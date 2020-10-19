@@ -2,7 +2,12 @@
 /plugin/;
 
 / {
-    compatible = "sinovoip,bpi-m2-zero";
+    compatible = "sinovoip,bpi-m2-zero\0allwinner,sun8i-h2-plus";
+
+
+	aliases {
+		gpio = "/soc/pinctrl@1c20800";
+	};
 
 	fragment@0 {
 		target = <&gpio>;

@@ -2,37 +2,37 @@
 /plugin/;
 
 / {
-    compatible = "brcm,bcm2708";
+    compatible = "sinovoip,bpi-m2-zero";
 
 	fragment@0 {
 		target = <&gpio>;
 		__overlay__ {
 			gpio_encoder_left_pin: gpio_encoder_left_pin@24 {
-				brcm,pins = <24>;
-				brcm,function = <0>;	// in
+				sinovoip,pins = <24>;
+				sinovoip,function = <0>;	// in
 			};
 			gpio_encoder_right_pin: gpio_encoder_right_pin@23 {
-				brcm,pins = <23>;
-				brcm,function = <0>;	// in
+				sinovoip,pins = <23>;
+				sinovoip,function = <0>;	// in
 			};
                         // left: when looking at the rabbit (matching hardware spec)
                         // forward: for the rabbit's left ear (right), counter-clock-wise
                         // for the rabbit's right ear (left below), clock-wise
 			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin@12 {
-				brcm,pins = <12>;
-				brcm,function = <1>;	// out
+				sinovoip,pins = <12>;
+				sinovoip,function = <1>;	// out
 			};
 			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin@11 {
-				brcm,pins = <11>;
-				brcm,function = <1>;	// out
+				sinovoip,pins = <11>;
+				sinovoip,function = <1>;	// out
 			};
 			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin@10 {
-				brcm,pins = <10>;
-				brcm,function = <1>;	// out
+				sinovoip,pins = <10>;
+				sinovoip,function = <1>;	// out
 			};
 			gpio_motor_right_backward_pin: gpio_motor_right_backward_pin@9 {
-				brcm,pins = <9>;
-				brcm,function = <1>;	// out
+				sinovoip,pins = <9>;
+				sinovoip,function = <1>;	// out
 			};
 		};
 	};

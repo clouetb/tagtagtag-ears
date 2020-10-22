@@ -1,11 +1,13 @@
 /dts-v1/;
 /plugin/;
 
+//  /boot/dtb/sun8i-h2-plus-bananapi-m2-zero.dtb
+//  /boot/overlay-user/tagtagtag-ears-overlay.dtbo
 / {
     compatible = "sinovoip,bpi-m2-zero\0allwinner,sun8i-h2-plus";
 
 	fragment@0 {
-		target = "/soc/pinctrl@1c20800";
+		target = <&pio>;
 		__overlay__ {
 			gpio_encoder_left_pin: gpio_encoder_left_pin@24 {
 				//pins = <24>;
@@ -45,18 +47,18 @@
     fragment@1 {
         target-path="/";
         __overlay__ {
-            tagtagtag_ears: tagtagtag-ears {
+            tagtagtag_ears {
+				// Declare a single pinctrl state (referencing the one declared above) and name it
+                // default, so it is activated automatically.
                 compatible = "linux,tagtagtag-ears";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
 				left-encoder-gpio = <&pio 24 0>;
                 left-motor-gpios = <&pio 12 0 &gpio 11 0>;
                 right-encoder-gpio = <&pio 23 0>;
                 right-motor-gpios = <&pio 10 0 &gpio 9 0>;
-
-                // Declare a single pinctrl state (referencing the one declared above) and name it
-                // default, so it is activated automatically.
-                pinctrl-names = "default";
-                pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
             };
         };
     };
 };
+

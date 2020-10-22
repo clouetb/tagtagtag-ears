@@ -5,7 +5,7 @@
     compatible = "sinovoip,bpi-m2-zero\0allwinner,sun8i-h2-plus";
 
 	fragment@0 {
-		target = <&pio>;
+		target = "/soc/pinctrl@1c20800";
 		__overlay__ {
 			gpio_encoder_left_pin: gpio_encoder_left_pin@24 {
 				//pins = <24>;
@@ -60,3 +60,5 @@
         };
     };
 };
+
+//  /boot/dtb/sun8i-h2-plus-bananapi-m2-zero.dtb

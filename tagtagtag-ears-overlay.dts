@@ -10,12 +10,12 @@
 			gpio_encoder_left_pin: gpio_encoder_left_pin@24 {
 				//pins = <24>;
 				pins = "PC4";
-				function = <0>;	// in
+				function = "gpio_in";	// in
 			};
 			gpio_encoder_right_pin: gpio_encoder_right_pin@23 {
 				//pins = <23>;
 				pins = "PA15";
-				function = <0>;	// in
+				function = "gpio_in";	// in
 			};
                         // left: when looking at the rabbit (matching hardware spec)
                         // forward: for the rabbit's left ear (right), counter-clock-wise
@@ -23,22 +23,22 @@
 			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin@12 {
 				//pins = <12>;
 				pins = "PA2";
-				function = <1>;	// out
+				function = "gpio_out";	// out
 			};
 			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin@11 {
 				//pins = <11>;
 				pins = "PC2";
-				function = <1>;	// out
+				function = "gpio_out";	// out
 			};
 			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin@10 {
 				//pins = <10>;
 				pins = "PC0";
-				function = <1>;	// out
+				function = "gpio_out";	// out
 			};
 			gpio_motor_right_backward_pin: gpio_motor_right_backward_pin@9 {
 				//pins = <9>;
 				pins = "PC1";
-				function = <1>;	// out
+				function = "gpio_out";	// out
 			};
 		};
 	};
@@ -47,7 +47,7 @@
         __overlay__ {
             tagtagtag_ears: tagtagtag-ears {
                 compatible = "linux,tagtagtag-ears";
-		left-encoder-gpio = <&pio 24 0>;
+				left-encoder-gpio = <&pio 24 0>;
                 left-motor-gpios = <&pio 12 0 &gpio 11 0>;
                 right-encoder-gpio = <&pio 23 0>;
                 right-motor-gpios = <&pio 10 0 &gpio 9 0>;

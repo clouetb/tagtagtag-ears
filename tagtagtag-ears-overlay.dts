@@ -10,12 +10,12 @@
 			gpio_encoder_left_pin: gpio_encoder_left_pin {
 				pins = "PC4";
 				function = "gpio_in";
-				bias-pull-up;
+				//bias-pull-up;
 			};
 			gpio_encoder_right_pin: gpio_encoder_right_pin {
 				pins = "PA15";
 				function = "gpio_in";
-				bias-pull-up;
+				//bias-pull-up;
 			};
 			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin {
 				pins = "PA2";
@@ -44,22 +44,11 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
 
-				tagtagtag-left-encoder {
-					label = "Left encoder";
-					gpios = <&pio 2 4 1>; /* PC4 GPIO_ACTIVE_LOW */
-				};
-				tagtagtag-right-encoder {
-					label = "Right encoder";
-					gpios = <&pio 0 15 1>; /* PA15 GPIO_ACTIVE_LOW */
-				};
-				tagtagtag-left {
-					label = "Left forward";
-					gpios = <&pio 0 2 0 &pio 2 2 0>; /* PA2 GPIO_ACTIVE_LOW */
-				};
-				tagtagtag-right {
-					label = "Right forward";
-					gpios = <&pio 2 0 0 &pio 2 1 0>; /* PC0 GPIO_ACTIVE_LOW */
-				};
+                left-encoder-gpio = <&gpio 2 4 1>;
+                left-motor-gpios = <&gpio 0 2 0 &gpio 2 2 0>;
+                right-encoder-gpio = <&gpio 0 15 1>;
+                right-motor-gpios = <&gpio 2 0 0 &gpio 2 1 0>;
+
 			};
 		};
 	};

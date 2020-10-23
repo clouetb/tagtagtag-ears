@@ -12,7 +12,7 @@
 		target = <&pio>;
 		__overlay__ {
 			gpio_button_0: gpio_button_0 {
-				pins = "PA10";
+				pins = "PC4";
 				function = "gpio_in";
 				bias-pull-up;
 			};
@@ -34,7 +34,7 @@
 				power_button {
 					label = "GPIO Key Power";
 					linux,code = <116>; /* KEY_POWER, see include/uapi/linux/input-event-codes.h */
-					gpios = <&pio 0 10 1>; /* PA10 GPIO_ACTIVE_LOW */
+					gpios = <&pio 2 4 1>; /* PA10 GPIO_ACTIVE_LOW */
 				};
 			};
 		};

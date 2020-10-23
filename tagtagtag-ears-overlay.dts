@@ -21,6 +21,11 @@
 				function = "gpio_in";	// in
 				bias-pull-up;
 			};
+
+/*			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin {
+				pins = "PA2";
+				function = "gpio_out";	// out
+			};*/
 		};
 	};
 
@@ -38,8 +43,11 @@
 
 				tagtagtag-left-encoder {
 					label = "Left encoder";
-					linux,code = <116>; /* KEY_POWER, see include/uapi/linux/input-event-codes.h */
 					gpios = <&pio 2 4 1>; /* PA10 GPIO_ACTIVE_LOW */
+				};
+				tagtagtag-right-encoder {
+					label = "Right encoder";
+					gpios = <&pio 0 15 1>; /* PA10 GPIO_ACTIVE_LOW */
 				};
 			};
 		};

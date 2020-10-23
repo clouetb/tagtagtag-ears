@@ -4,10 +4,6 @@
 / {
 	compatible = "allwinner,sun4i-a10", "allwinner,sun7i-a20", "allwinner,sun8i-h3", "allwinner,sun50i-a64", "allwinner,sun50i-h5";
 
-	/*
-	 * This fragment is needed only for the internal pull-up activation,
-	 * external pull-up resistor is highly recommended if using long wires
-	 */
 	fragment@0 {
 		target = <&pio>;
 		__overlay__ {
@@ -18,14 +14,17 @@
 			};
 			gpio_encoder_right_pin: gpio_encoder_right_pin {
 				pins = "PA15";
-				function = "gpio_in";	// in
+				function = "gpio_in";
 				bias-pull-up;
 			};
-
-/*			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin {
+			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin {
 				pins = "PA2";
-				function = "gpio_out";	// out
-			};*/
+				function = "gpio_out";
+			};
+			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin@ {
+				pins = "PC2";
+				function = "gpio_out";
+			};
 		};
 	};
 
@@ -33,21 +32,25 @@
 		target-path = "/";
 		__overlay__ {
 			tagtagtag-ears {
-				/*
-				 * Use "gpio-keys" for EINT capable pins, "gpio-keys-polled" for other pins
-				 * add "poll-interval" property if using "gpio-keys-polled"
-				 */
 				compatible = "linux,tagtagtag-ears";
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin>;
 
 				tagtagtag-left-encoder {
 					label = "Left encoder";
-					gpios = <&pio 2 4 1>; /* PA10 GPIO_ACTIVE_LOW */
+					gpios = <&pio 2 4 1>; /* PC4 GPIO_ACTIVE_LOW */
 				};
 				tagtagtag-right-encoder {
 					label = "Right encoder";
-					gpios = <&pio 0 15 1>; /* PA10 GPIO_ACTIVE_LOW */
+					gpios = <&pio 0 15 1>; /* PA15 GPIO_ACTIVE_LOW */
+				};
+				tagtagtag-left-forward {
+					label = "Left forward";
+					gpios = <&pio 0 2 0>; /* PA2 GPIO_ACTIVE_LOW */
+				};
+				tagtagtag-left-backward {
+					label = "Left backward";
+					gpios = <&pio 2 2 0>; /* PC2 GPIO_ACTIVE_LOW */
 				};
 			};
 		};

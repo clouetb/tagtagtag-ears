@@ -1,64 +1,42 @@
 /dts-v1/;
 /plugin/;
 
-//  /boot/dtb/sun8i-h2-plus-bananapi-m2-zero.dtb
-//  /boot/overlay-user/tagtagtag-ears-overlay.dtbo
 / {
-    compatible = "sinovoip,bpi-m2-zero\0allwinner,sun8i-h2-plus";
+	compatible = "allwinner,sun4i-a10", "allwinner,sun7i-a20", "allwinner,sun8i-h3", "allwinner,sun50i-a64", "allwinner,sun50i-h5";
 
+	/*
+	 * This fragment is needed only for the internal pull-up activation,
+	 * external pull-up resistor is highly recommended if using long wires
+	 */
 	fragment@0 {
 		target = <&pio>;
 		__overlay__ {
-			gpio_encoder_left_pin: gpio_encoder_left_pin@24 {
-				//pins = <24>;
-				pins = "PC4";
-				function = "gpio_in";	// in
-			};
-			gpio_encoder_right_pin: gpio_encoder_right_pin@23 {
-				//pins = <23>;
-				pins = "PA15";
-				function = "gpio_in";	// in
-			};
-                        // left: when looking at the rabbit (matching hardware spec)
-                        // forward: for the rabbit's left ear (right), counter-clock-wise
-                        // for the rabbit's right ear (left below), clock-wise
-			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin@12 {
-				//pins = <12>;
-				pins = "PA2";
-				function = "gpio_out";	// out
-			};
-			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin@11 {
-				//pins = <11>;
-				pins = "PC2";
-				function = "gpio_out";	// out
-			};
-			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin@10 {
-				//pins = <10>;
-				pins = "PC0";
-				function = "gpio_out";	// out
-			};
-			gpio_motor_right_backward_pin: gpio_motor_right_backward_pin@9 {
-				//pins = <9>;
-				pins = "PC1";
-				function = "gpio_out";	// out
+			gpio_button_0: gpio_button_0 {
+				pins = "PA10";
+				function = "gpio_in";
+				bias-pull-up;
 			};
 		};
 	};
-    fragment@1 {
-        target-path="/";
-        __overlay__ {
-            tagtagtag_ears {
-				// Declare a single pinctrl state (referencing the one declared above) and name it
-                // default, so it is activated automatically.
-                compatible = "linux,tagtagtag-ears";
-				pinctrl-names = "default";
-				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
-				left-encoder-gpio = <&pio 24 0>;
-                left-motor-gpios = <&pio 12 0 &gpio 11 0>;
-                right-encoder-gpio = <&pio 23 0>;
-                right-motor-gpios = <&pio 10 0 &gpio 9 0>;
-            };
-        };
-    };
-};
 
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+			gpio-keys-user {
+				/*
+				 * Use "gpio-keys" for EINT capable pins, "gpio-keys-polled" for other pins
+				 * add "poll-interval" property if using "gpio-keys-polled"
+				 */
+				compatible = "gpio-keys";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_button_0>;
+
+				power_button {
+					label = "GPIO Key Power";
+					linux,code = <116>; /* KEY_POWER, see include/uapi/linux/input-event-codes.h */
+					gpios = <&pio 0 10 1>; /* PA10 GPIO_ACTIVE_LOW */
+				};
+			};
+		};
+	};
+};

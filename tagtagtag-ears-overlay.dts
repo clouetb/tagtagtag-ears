@@ -40,6 +40,10 @@
 		target-path = "/";
 		__overlay__ {
 			tagtagtag-ears {
+				compatible = "linux,tagtagtag-ears";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
+
 				tagtagtag-left-encoder {
 					label = "Left encoder";
 					gpios = <&pio 2 4 1>; /* PC4 GPIO_ACTIVE_LOW */
@@ -48,27 +52,14 @@
 					label = "Right encoder";
 					gpios = <&pio 0 15 1>; /* PA15 GPIO_ACTIVE_LOW */
 				};
-				tagtagtag-left-forward {
+				tagtagtag-left {
 					label = "Left forward";
-					gpios = <&pio 0 2 0>; /* PA2 GPIO_ACTIVE_LOW */
+					gpios = <&pio 0 2 0 &pio 2 2 0>; /* PA2 GPIO_ACTIVE_LOW */
 				};
-				tagtagtag-left-backward {
-					label = "Left backward";
-					gpios = <&pio 2 2 0>; /* PC2 GPIO_ACTIVE_LOW */
-				};
-				tagtagtag-right-forward {
+				tagtagtag-right {
 					label = "Right forward";
-					gpios = <&pio 2 0 0>; /* PC0 GPIO_ACTIVE_LOW */
+					gpios = <&pio 2 0 0 &pio 2 1 0>; /* PC0 GPIO_ACTIVE_LOW */
 				};
-				tagtagtag-right-backward {
-					label = "Right backward";
-					gpios = <&pio 2 1 0>; /* PC1 GPIO_ACTIVE_LOW */
-				};
-
-				compatible = "linux,tagtagtag-ears";
-				pinctrl-names = "default";
-				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
-
 			};
 		};
 	};

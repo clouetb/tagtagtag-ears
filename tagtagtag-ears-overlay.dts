@@ -40,10 +40,6 @@
 		target-path = "/";
 		__overlay__ {
 			tagtagtag-ears {
-				compatible = "linux,tagtagtag-ears";
-				pinctrl-names = "default";
-				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
-
 				tagtagtag-left-encoder {
 					label = "Left encoder";
 					gpios = <&pio 2 4 1>; /* PC4 GPIO_ACTIVE_LOW */
@@ -68,6 +64,11 @@
 					label = "Right backward";
 					gpios = <&pio 2 1 0>; /* PC1 GPIO_ACTIVE_LOW */
 				};
+
+				compatible = "linux,tagtagtag-ears";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
+
 			};
 		};
 	};

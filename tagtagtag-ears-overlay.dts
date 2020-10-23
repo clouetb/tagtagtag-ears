@@ -21,8 +21,16 @@
 				pins = "PA2";
 				function = "gpio_out";
 			};
-			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin@ {
+			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin {
 				pins = "PC2";
+				function = "gpio_out";
+			};
+			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin {
+				pins = "PC0";
+				function = "gpio_out";
+			};
+			gpio_motor_right_backward_pin: gpio_motor_right_backward_pin {
+				pins = "PC1";
 				function = "gpio_out";
 			};
 		};
@@ -51,6 +59,14 @@
 				tagtagtag-left-backward {
 					label = "Left backward";
 					gpios = <&pio 2 2 0>; /* PC2 GPIO_ACTIVE_LOW */
+				};
+				tagtagtag-right-forward {
+					label = "Right forward";
+					gpios = <&pio 2 0 0>; /* PC0 GPIO_ACTIVE_LOW */
+				};
+				tagtagtag-right-backward {
+					label = "Right backward";
+					gpios = <&pio 2 1 0>; /* PC1 GPIO_ACTIVE_LOW */
 				};
 			};
 		};

@@ -11,7 +11,7 @@
 	fragment@0 {
 		target = <&pio>;
 		__overlay__ {
-			gpio_button_0: gpio_button_0 {
+			gpio_encoder_left_pin: gpio_encoder_left_pin {
 				pins = "PC4";
 				function = "gpio_in";
 				bias-pull-up;
@@ -22,7 +22,7 @@
 	fragment@1 {
 		target-path = "/";
 		__overlay__ {
-			gpio-keys-user {
+			tagtagtag-ears {
 				/*
 				 * Use "gpio-keys" for EINT capable pins, "gpio-keys-polled" for other pins
 				 * add "poll-interval" property if using "gpio-keys-polled"
@@ -34,7 +34,7 @@
 				power_button {
 					label = "GPIO Key Power";
 					linux,code = <116>; /* KEY_POWER, see include/uapi/linux/input-event-codes.h */
-					gpios = <&pio 2 4 1>; /* PA10 GPIO_ACTIVE_LOW */
+					left-encoder-gpio = <&pio 2 4 1>; /* PA10 GPIO_ACTIVE_LOW */
 				};
 			};
 		};

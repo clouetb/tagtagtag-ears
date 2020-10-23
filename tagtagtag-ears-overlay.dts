@@ -43,7 +43,8 @@
 				compatible = "linux,tagtagtag-ears";
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
-
+				status = "okay";
+				
 				left-encoder-gpio {
 					label = "Left encoder";
 					gpios = <&pio 2 4 1>; /* PC4 GPIO_ACTIVE_LOW */

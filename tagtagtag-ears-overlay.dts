@@ -27,7 +27,7 @@
 				 * Use "gpio-keys" for EINT capable pins, "gpio-keys-polled" for other pins
 				 * add "poll-interval" property if using "gpio-keys-polled"
 				 */
-				compatible = "gpio-keys";
+				compatible = "linux,tagtagtag-ears";
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_button_0>;
 

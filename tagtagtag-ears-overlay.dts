@@ -5,7 +5,7 @@
 	compatible = "allwinner,sun4i-a10", "allwinner,sun7i-a20", "allwinner,sun8i-h3", "allwinner,sun50i-a64", "allwinner,sun50i-h5";
 
 	fragment@0 {
-		target = <&r_pio>;
+		target = <&pio>;
 		__overlay__ {
 
 			gpio_encoder_left_pin: gpio_encoder_left_pin@1 {
@@ -47,10 +47,10 @@
 				interrupt-controller;
 				#interrupt-cells = < 0x03 >;
 
-				left-encoder-gpio = <&r_pio 2 4 1>;
-                left-motor-gpios = <&r_pio 0 2 1 &r_pio 2 2 1>;
-                right-encoder-gpio = <&r_pio 0 15 1>;
-                right-motor-gpios = <&r_pio 2 0 1 &r_pio 2 1 1>;
+				left-encoder-gpio = <&pio 2 4 1>;
+                left-motor-gpios = <&pio 0 2 1 &pio 2 2 1>;
+                right-encoder-gpio = <&pio 0 15 1>;
+                right-motor-gpios = <&pio 2 0 1 &pio 2 1 1>;
 
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;

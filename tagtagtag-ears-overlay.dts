@@ -5,7 +5,7 @@
 	compatible = "allwinner,sun4i-a10", "allwinner,sun7i-a20", "allwinner,sun8i-h3", "allwinner,sun50i-a64", "allwinner,sun50i-h5";
 
 	fragment@0 {
-		target = <&pio>;
+		target = <&r_pio>;
 		__overlay__ {
 
 			gpio_encoder_left_pin: gpio_encoder_left_pin@1 {
@@ -43,10 +43,10 @@
 			tagtagtag-ears {
 				compatible = "linux,tagtagtag-ears";
 
-				left-encoder-gpio = <0x0c 1 0>;
-                left-motor-gpios = <0x0c 2 0 0x0c 3 0>;
-                right-encoder-gpio = <0x0c 4 0>;
-                right-motor-gpios = <0x0c 5 0 0x0c 6 0>;
+				left-encoder-gpio = <&r_pio 1 0>;
+                left-motor-gpios = <&r_pio 2 0 &r_pio 3 0>;
+                right-encoder-gpio = <&r_pio 4 0>;
+                right-motor-gpios = <&r_pio 5 0 &r_pio 6 0>;
 
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;

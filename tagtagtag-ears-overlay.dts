@@ -48,9 +48,9 @@
 				#interrupt-cells = < 0x03 >;
 
 				left-encoder-gpio = <&pio 2 4 1>;
-                left-motor-gpios = <&pio 0 2 0 &pio 2 2 0>;
+                left-motor-gpios = <&pio 0 2 1 &pio 2 2 1>;
                 right-encoder-gpio = <&pio 0 15 1>;
-                right-motor-gpios = <&pio 2 0 0 &pio 2 1 0>;
+                right-motor-gpios = <&pio 2 0 1 &pio 2 1 1>;
 
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;

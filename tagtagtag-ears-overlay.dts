@@ -42,6 +42,10 @@
 		__overlay__ {
 			tagtagtag-ears {
 				compatible = "linux,tagtagtag-ears";
+				gpio-controller;
+				#gpio-cells = < 0x03 >;
+				interrupt-controller;
+				#interrupt-cells = < 0x03 >;
 
 				left-encoder-gpio = <&r_pio 1 0>;
                 left-motor-gpios = <&r_pio 2 0 &r_pio 3 0>;

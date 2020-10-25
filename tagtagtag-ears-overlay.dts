@@ -8,30 +8,30 @@
 		target = <&pio>;
 		__overlay__ {
 			gpio_encoder_left_pin: gpio_encoder_left_pin {
-				pins = "PC4";
-				function = "gpio_in";
+				allwinner,pins = "PC4";
+				allwinner,function = "gpio_in";
 				//bias-pull-up;
 			};
 			gpio_encoder_right_pin: gpio_encoder_right_pin {
-				pins = "PA15";
-				function = "gpio_in";
+				allwinner,pins = "PA15";
+				allwinner,function = "gpio_in";
 				//bias-pull-up;
 			};
 			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin {
-				pins = "PA2";
-				function = "gpio_out";
+				allwinner,pins = "PA2";
+				allwinner,function = "gpio_out";
 			};
 			gpio_motor_left_backward_pin: gpio_motor_left_backward_pin {
-				pins = "PC2";
-				function = "gpio_out";
+				allwinner,pins = "PC2";
+				allwinner,function = "gpio_out";
 			};
 			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin {
-				pins = "PC0";
-				function = "gpio_out";
+				allwinner,pins = "PC0";
+				allwinner,function = "gpio_out";
 			};
 			gpio_motor_right_backward_pin: gpio_motor_right_backward_pin {
-				pins = "PC1";
-				function = "gpio_out";
+				allwinner,pins = "PC1";
+				allwinner,function = "gpio_out";
 			};
 		};
 	};
@@ -44,7 +44,7 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_encoder_left_pin &gpio_motor_left_forward_pin &gpio_motor_left_backward_pin &gpio_encoder_right_pin &gpio_motor_right_forward_pin &gpio_motor_right_backward_pin>;
 				status = "okay";
-				
+
 				left-encoder-gpio {
 					label = "Left encoder";
 					gpios = <&pio 2 4 1>; /* PC4 GPIO_ACTIVE_LOW */

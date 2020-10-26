@@ -856,7 +856,7 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
     // Request interrupts from encoder GPIOs
     /* Tres sale... */
     struct gpio_chip	*chip;
-    chip = priv->encoder_gpio->chip
+    chip = priv->encoder_gpio->chip;
     printk("After timer_setup priv %p encoder_gpio %p chip %s", priv, priv->encoder_gpio, chip->label);
     irq = gpiod_to_irq(priv->encoder_gpio);
 

@@ -861,7 +861,7 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
     err = devm_request_any_context_irq(dev, irq,
                     tagtagtagear_irq_handler, IRQF_TRIGGER_FALLING,
                     DRV_NAME, priv);
-    printk("After devm_request_any_context_irq");
+    printk("After devm_request_any_context_irq %d", err);
     if (err < 0)
         return err;
 

@@ -857,7 +857,7 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
     printk("After timer_setup");
     irq = gpiod_to_irq(priv->encoder_gpio);
 
-    printk("After gpiod_to_irq");
+    printk("After gpiod_to_irq IRQ is %d", irq);
     err = devm_request_any_context_irq(dev, irq,
                     tagtagtagear_irq_handler, IRQF_TRIGGER_FALLING,
                     DRV_NAME, priv);

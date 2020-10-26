@@ -810,7 +810,7 @@ static struct file_operations ear_fops = {
 // ========================================================================== //
 
 static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct class *ears_class, int major, int minor, const char* encoder_name, const char* motor_name) {
-    printk("Init major %d minor %d encoder %s motor %s", major, minor, encoder_name, motor_name)
+    printk("Init major %d minor %d encoder %s motor %s", major, minor, encoder_name, motor_name);
     dev_t devno = MKDEV(major, minor);
     int err;
     int irq;

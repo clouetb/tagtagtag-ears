@@ -823,6 +823,7 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
         return err;
     }
 
+    printk("After devm_gpiod_get");
     priv->motor_gpios = devm_gpiod_get_array(dev, motor_name, GPIOD_OUT_LOW);
     if (IS_ERR(priv->motor_gpios)) {
         err = PTR_ERR(priv->motor_gpios);
@@ -831,6 +832,7 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
         return err;
     }
 
+    printk("After devm_gpiod_get_array");
     cdev_init(&priv->cdev, &ear_fops);
     err = cdev_add(&priv->cdev, devno, 1);
     if (err) {
@@ -838,6 +840,7 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
         return err;
     }
 
+    printk("After devm_gpiod_get_array");
 	priv->device = device_create(ears_class, dev, devno, NULL, /* no additional data */
 		DEVICE_NAME "%d", minor);
 	if (IS_ERR(priv->device)) {
@@ -846,23 +849,29 @@ static int init_ear(struct device *dev, struct tagtagtagear_data *priv, struct c
         return err;
     }
 
+    printk("After device_create");
     // Setup timer for broken ears
     timer_setup(&priv->broken_timer, tagtagtagear_broken_timer_cb, 0);
 
     // Request interrupts from encoder GPIOs
+    printk("After timer_setup");
     irq = gpiod_to_irq(priv->encoder_gpio);
+
+    printk("After gpiod_to_irq");
     err = devm_request_any_context_irq(dev, irq,
                     tagtagtagear_irq_handler, IRQF_TRIGGER_FALLING,
                     DRV_NAME, priv);
+    printk("After devm_request_any_context_irq");
     if (err < 0)
         return err;
 
     // Setup wait queues
     init_waitqueue_head(&priv->read_wq);
+    printk("After init_waitqueue_head read_wq");
     init_waitqueue_head(&priv->write_wq);
-
+    printk("After init_waitqueue_head write_wq");
     transition_to_testing(priv);
-
+    printk("After transition_to_testing");
     return 0;
 }
 

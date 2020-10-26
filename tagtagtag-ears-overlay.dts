@@ -9,7 +9,7 @@
 		__overlay__ {
 			gpio_encoder_left_pin: gpio_encoder_left_pin@1 {
 				allwinner,pins = "PC4";
-				allwinner,function = "irq";
+				allwinner,function = "gpio_in";
 				bias-pull-up;
 			};
 			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin@2 {
@@ -23,7 +23,7 @@
             
 			gpio_encoder_right_pin: gpio_encoder_right_pin@4 {
 				allwinner,pins = "PA15";
-				allwinner,function = "irq";
+				allwinner,function = "gpio_in";
 				bias-pull-up;
 			};
 			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin@5 {

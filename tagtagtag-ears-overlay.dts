@@ -44,9 +44,8 @@
 				compatible = "linux,tagtagtag-ears";
 				pinctrl-names = "default";
 				interrupt-controller;
-				#interrupt-cells = <2>;
+				#interrupt-cells = <1>;
 				interrupt-parent = <&pio>;
-				interrupts = <&pio 2 4 0 &pio 0 15 0>; /* PA10 IRQ_TYPE_EDGE_FALLING */
 				pinctrl-0 = <&gpio_encoder_left_pin 
 					     &gpio_motor_left_forward_pin 
 					     &gpio_motor_left_backward_pin 

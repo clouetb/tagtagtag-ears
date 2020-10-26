@@ -9,8 +9,7 @@
 		__overlay__ {
 			gpio_encoder_left_pin: gpio_encoder_left_pin@1 {
 				allwinner,pins = "PC4";
-				allwinner,function = "gpio_in";
-				interrupt-parent = <&pio>;
+				allwinner,function = "irq";
 				bias-pull-up;
 			};
 			gpio_motor_left_forward_pin: gpio_motor_left_forward_pin@2 {
@@ -24,8 +23,7 @@
             
 			gpio_encoder_right_pin: gpio_encoder_right_pin@4 {
 				allwinner,pins = "PA15";
-				allwinner,function = "gpio_in";
-				interrupt-parent = <&pio>;
+				allwinner,function = "irq";
 				bias-pull-up;
 			};
 			gpio_motor_right_forward_pin: gpio_motor_right_forward_pin@5 {
@@ -45,6 +43,10 @@
 			tagtagtag-ears {
 				compatible = "linux,tagtagtag-ears";
 				pinctrl-names = "default";
+				interrupt-controller;
+				#interrupt-cells = <2>;
+				interrupt-parent = <&pio>;
+				interrupts = <&pio 2 4 0 &pio 0 15 0>; /* PA10 IRQ_TYPE_EDGE_FALLING */
 				pinctrl-0 = <&gpio_encoder_left_pin 
 					     &gpio_motor_left_forward_pin 
 					     &gpio_motor_left_backward_pin 
@@ -52,9 +54,9 @@
 					     &gpio_motor_right_forward_pin 
 					     &gpio_motor_right_backward_pin>;
 
-                left-encoder-gpios = <&pio 2 4 0>; 		        // PC4
+                left-encoder-gpio = <&pio 2 4 0>; 		        // PC4
                 left-motor-gpios = <&pio 0 2 1 &pio 2 2 1>;	    // PA2, PC2
-                right-encoder-gpios = <&pio 0 15 0>;		    // PA15
+                right-encoder-gpio = <&pio 0 15 0>;		    	// PA15
                 right-motor-gpios = <&pio 2 0 1 &pio 2 1 1>;	// PC0, PC1
 
 				status = "okay";

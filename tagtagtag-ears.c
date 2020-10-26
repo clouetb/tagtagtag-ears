@@ -39,7 +39,7 @@
 #include <linux/wait.h>
 #include <linux/uaccess.h>
 #include <linux/poll.h>
-
+#include <linux/gpio/driver.h>
 // Definitions
 
 #define DRV_NAME "tagtagtag-ears"
